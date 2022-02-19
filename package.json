@@ -1,0 +1,32 @@
+{
+  "name": "csc3916_hw2",
+  "version": "1.0.0",
+  "description": "Web API 3916 Homework 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kargbof1/CSC3916_HW2.git"
+  },
+  "keywords": [
+    "Movie"
+  ],
+  "author": "Fatmata Kargbo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kargbof1/CSC3916_HW2/issues"
+  },
+  "homepage": "https://github.com/kargbof1/CSC3916_HW2#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0"
+  }
+}
