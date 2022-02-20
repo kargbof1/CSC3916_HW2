@@ -57,6 +57,7 @@ router.post('/signup', function(req, res) {
 
 router.post('/signin', function (req, res) {
     var user = db.findOne(req.body.username);
+    var unique_key = process.env.USERDOMAIN_ROAMINGPROFILE;
 
     if (!user) {
         res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
@@ -93,16 +94,35 @@ router.route('/movies')
             res.json(o);
         }
     )
-    .post(
-        {}
-    )
-
-    .get(
-        {}
-    );
+    .get(authJwtController.isAuthenticated,function (req,res)
+        {
+              console.log(req.body);
+              res = res.status(200);
+              if(req.get('Content-Type'))
+              {
+                  res = res.type(req.get('Content-Type'));
+              }
+              var o = getJSONObjectForMovieRequirement(req);
+              o.body={msg:"GET MOVIES."}
+              res.json(o);
+          })
+    .post(authJwtController.isAuthenticated, function(req, res) {
+            console.log(req.body);
+            res = res.status(200);
+            if (req.get('Content-Type')) {
+                res = res.type(req.get('Content-Type'));
+            }
+            var o = getJSONObjectForMovieRequirement(req);
+            o.body={msg:"movie saved."}
+            res.json(o);
+        }
+    ).all(function (req, res){
+        res.status(405).send({success: false, msg: 'HTTP method not implemented.'})
+    }
+);
 
 
 app.use('/', router);
 app.listen(process.env.PORT || 8080);
-module.exports = app; // for testing only
+module.exports = app;
 
